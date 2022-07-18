@@ -1,0 +1,61 @@
+/*
+describe a route service，and the service name is RouteGuide.
+  four serviceTypes described in service: Point, Rectangle, Feature, RouteSummary, Chat.
+  four serviceMethods provided in service:
+    1. GetFuture(input: Point) --> output: Feature
+    2. ListFuture(input: Rectangle) --> output stream: Features
+    3. RecordRoute(input stream: real-time continuous points) --> output: RouteSummary
+    4. Recommend(input stream: recommendationRequest) --> output stream: Features
+*/
+
+syntax = "proto3";
+
+option go_package = "github.com/CanghaiLi/PB_PRO/route";
+
+package route;
+
+// Point  ====> the num like 1,2 amount to the key in JSON, but its size is smaller
+message Point {
+  int32 latitute = 1;
+  int32 longitute = 2;
+}
+
+message Rectangle {
+  Point lo = 1;
+  Point hi = 2;
+}
+
+message Feature {
+  string name = 1;
+  Point location = 2;
+}
+
+message RouteSummary {
+  int32 point_count = 1;
+  int32 distance = 2;
+  int32 elapsed_time = 3;
+}
+
+message RecommendationRequest {
+  RecommendationMode mode = 1;
+  Point point = 2;
+}
+
+enum RecommendationMode {
+  GetFarthest = 0;
+  GetNearest = 1;
+}
+
+service RouteGuide {
+  // Unary
+  rpc GetFuture(Point) returns (Feature){}
+
+  // Server-side streaming
+  rpc ListFuture(Rectangle) returns (stream Feature){}
+
+  // Client-side streaming
+  rpc RecordRoute(stream Point) returns (RouteSummary){}
+
+  // Bidirectional streaming (two-way stream)
+  rpc Recommend(stream RecommendationRequest) returns (stream Feature){}
+}
