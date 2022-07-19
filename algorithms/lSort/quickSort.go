@@ -7,22 +7,20 @@ func QuickSort(arr []int, left, right int) {
 		QuickSort(arr, mid+1, right)
 	}
 }
-
-func partition(list []int, left, right int) int {
-	temp := list[left]
+func partition(arr []int, left, right int) int {
+	// Pick a number at any position, for example the most left
+	// Store it in a temporary variable
+	temp := arr[left]
 	for left < right {
-		//从右边找比temp小的树
-		for list[right] >= temp && left < right {
-			right -= 1 //右指针左移一步
+		for arr[right] >= temp && left < right {
+			right -= 1
 		}
-		list[left] = list[right] //把右边的值写到左边的空位
-
-		for list[left] <= temp && left < right {
+		arr[left] = arr[right]
+		for arr[left] <= temp && left < right {
 			left += 1
 		}
-		list[right] = list[left]
+		arr[right] = arr[left]
 	}
-	// left right都可以
-	list[left] = temp
+	arr[left] = temp
 	return left
 }
