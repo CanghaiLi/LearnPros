@@ -21,12 +21,11 @@ func ccc[T int](p T) T {
 func main() {
 	r := gin.Default()
 	r.POST("/test", func(c *gin.Context) {
-
 		// 注册检验函数
 		if v, ok := binding.Validator.Engine().(*validator.Validate); ok {
 			v.RegisterValidation("range18", range18)
 		}
-
+		fmt.Println(binding.Validator)
 		var u User
 		err := c.ShouldBind(&u)
 		if err != nil {
