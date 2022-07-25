@@ -8,6 +8,7 @@ func main() {
 
 func ThreeSum(arr []int) [][]int {
 	var res [][]int
+	// test
 	if arr == nil || len(arr) < 3 {
 		return res
 	}
