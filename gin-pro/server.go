@@ -19,7 +19,14 @@ func ccc[T int](p T) T {
 }
 
 func main() {
+	// 创建基础路由器
 	r := gin.Default()
+	v1 := r.Group("v1")
+	v1.GET("/keys", func(ctx *gin.Context) {
+		ctx.JSON(200, "hello")
+		fmt.Println("in v1.keys")
+
+	})
 	r.POST("/test", func(c *gin.Context) {
 		// 注册检验函数
 		if v, ok := binding.Validator.Engine().(*validator.Validate); ok {
@@ -45,5 +52,4 @@ func range18(fl validator.FieldLevel) bool {
 		return true
 	}
 	return false
-
 }
