@@ -1,3 +1,3 @@
-module docker-test
+module file_controller
 
 go 1.18
