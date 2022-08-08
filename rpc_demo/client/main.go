@@ -14,6 +14,6 @@ func main() {
 
 	//	2. 远程调用
 	var res string
-	conn.Call("Demo.Helloworld", "Lining", &res)
+	conn.Call("World.Helloworld", "Lining", &res)
 	fmt.Println(res)
 }

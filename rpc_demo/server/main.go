@@ -19,7 +19,7 @@ func (w World) Helloworld(input string, output *string) error {
 func main() {
 	//	1. 注册rpc服务，绑定方法
 	//rpc.RegisterName("Demo", new(World))
-	err := rpc.RegisterName("Demo", &World{})
+	err := rpc.Register(new(World))
 	if err != nil {
 		log.Fatalln(err, "注册rpc服务失败")
 	}
@@ -32,15 +32,17 @@ func main() {
 	}
 	defer listener.Close()
 
-	//	3. 建立链接
-	conn, err := listener.Accept()
-	fmt.Println("建立链接...")
-	if err != nil {
-		log.Fatalln(err, "建立链接务失败")
-	}
-	defer conn.Close()
+	for {
+		//	3. 建立链接
+		conn, err := listener.Accept()
+		fmt.Println("建立链接...")
+		if err != nil {
+			fmt.Println(err, "建立链接务失败")
+			continue
+		}
 
-	//	4. 绑定服务
-	rpc.ServeConn(conn)
+		//	4. 绑定服务
+		go rpc.ServeConn(conn)
+	}
 
 }
