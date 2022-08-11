@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"time"
+	"unicode/utf8"
 )
 
 var ch = make(chan int, 5)
@@ -19,6 +20,8 @@ func f() {
 
 func main() {
 	go f()
+	fmt.Println(len("he1, 啊"))
+	fmt.Println(utf8.RuneCountInString("he1, 啊"))
 
 	//time.Sleep(time.Second * 1)
 	println("loading")

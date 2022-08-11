@@ -5,7 +5,6 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
 	"github.com/go-playground/validator/v10"
-	"net/http"
 )
 
 type User struct {
@@ -14,34 +13,27 @@ type User struct {
 	Sex  bool   `json:"sex"`
 }
 
-func ccc[T int](p T) T {
-	return p
-}
-
 func main() {
 	// 创建基础路由器
 	r := gin.Default()
-	v1 := r.Group("v1")
+	v1 := r.Group("api/pc")
 	v1.GET("/keys", func(ctx *gin.Context) {
-		ctx.JSON(200, "hello")
-		fmt.Println("in v1.keys")
-
+		result := NewResult(ctx)
+		result.Success([]interface{}{"周", "杰", "轮", 4, 5})
 	})
-	r.POST("/test", func(c *gin.Context) {
+	v1.POST("/test", func(ctx *gin.Context) {
 		// 注册检验函数
 		if v, ok := binding.Validator.Engine().(*validator.Validate); ok {
 			v.RegisterValidation("range18", range18)
 		}
-		fmt.Println(binding.Validator)
 		var u User
-		err := c.ShouldBind(&u)
+		result := NewResult(ctx)
+		err := ctx.ShouldBind(&u)
 		if err != nil {
 			fmt.Println(err.Error())
-			c.JSON(http.StatusBadRequest, gin.H{
-				"message": fmt.Sprintf("%s", err),
-			})
+			result.Error(1, err.Error())
 		} else {
-			c.JSON(http.StatusOK, u)
+			result.Success(&u)
 		}
 	})
 	r.Run()
