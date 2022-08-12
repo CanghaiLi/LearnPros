@@ -1,0 +1,16 @@
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /api/pc/keys              --> main.main.func1 (3 handlers)
+[GIN-debug] POST   /api/pc/test              --> main.main.func2 (3 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Environment variable PORT is undefined. Using port :8080 by default
+[GIN-debug] Listening and serving HTTP on :8080
+[GIN] 2022/08/12 - 16:33:07 | 200 |     205.491µs |       127.0.0.1 | GET      "/api/pc/keys"
+[GIN] 2022/08/12 - 16:33:08 | 200 |     294.032µs |       127.0.0.1 | POST     "/api/pc/test"
+[GIN] 2022/08/12 - 16:44:46 | 200 |     151.993µs |       127.0.0.1 | POST     "/api/pc/test"
+[GIN] 2022/08/12 - 17:11:55 | 200 |     126.521µs |       127.0.0.1 | POST     "/api/pc/test"

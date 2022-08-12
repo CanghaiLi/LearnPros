@@ -1,9 +1,11 @@
 package main
 
 import (
+	_ "embed"
+	"encoding/json"
 	"fmt"
+	"github.com/skip2/go-qrcode"
 	"time"
-	"unicode/utf8"
 )
 
 var ch = make(chan int, 5)
@@ -18,16 +20,19 @@ func f() {
 	println("close")
 }
 
+type Js struct {
+	Name string `json:"name"`
+	Age  int    `json:"age"`
+}
+
+//go:embed file.txt
+var s string
+
 func main() {
-	go f()
-	fmt.Println(len("he1, 啊"))
-	fmt.Println(utf8.RuneCountInString("he1, 啊"))
-
-	//time.Sleep(time.Second * 1)
-	println("loading")
-
-	for c := range ch {
-		println(c)
+	fmt.Println(s)
+	bytes, err := json.Marshal(Js{"lee", 18})
+	if err != nil {
+		return
 	}
-	fmt.Println("exit")
+	qrcode.WriteFile(string(bytes), qrcode.Medium, 256, "./golang_qrcode.png")
 }
