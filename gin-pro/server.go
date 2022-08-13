@@ -1,9 +1,14 @@
 package main
 
-func main() {
+import "github.com/CanghaiLi/LearnPros/gin-pro/conf"
 
+func main() {
+	conf.Init()
 }
 
+//
+//
+//
 //type User struct {
 //	Name string `json:"name"`
 //	Age  int    `json:"age" binding:"required,range18"`
