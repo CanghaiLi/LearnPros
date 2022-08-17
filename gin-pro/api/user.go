@@ -14,3 +14,15 @@ func UserRegister(ctx *gin.Context) {
 		ctx.JSON(400, err)
 	}
 }
+
+func Test(ctx *gin.Context) {
+	ctx.JSON(200, gin.H{
+		"html": "<b> Hello, world!</b>",
+	})
+}
+
+func TestPure(ctx *gin.Context) {
+	ctx.PureJSON(200, gin.H{
+		"html": "<b> Hello, world!</b>",
+	})
+}

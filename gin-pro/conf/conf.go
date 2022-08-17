@@ -23,6 +23,7 @@ func Init() {
 	if err != nil {
 		log.Fatalln("配置文件读取错误！", err)
 	}
+	// 将配置文件读入变量中
 	LoadIniConfig(file)
 
 	// 链接数据库，设置空闲连接池中(保留)的最大连接数

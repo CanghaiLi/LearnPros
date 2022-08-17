@@ -11,9 +11,11 @@ func NewRouter() *gin.Engine {
 	r := gin.Default()
 	store := cookie.NewStore([]byte("lining-lsb"))
 	r.Use(sessions.Sessions("mySession", store))
-	v1 := r.Group("api/pc")
+	v1 := r.Group("api/v1")
 	{
-		v1.POST("user/register", api.UserRegister)
+		v1.GET("/test", api.Test)
+		v1.GET("/testPure", api.TestPure)
+		v1.POST("/user/register", api.UserRegister)
 	}
 	return r
 }

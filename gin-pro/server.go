@@ -1,14 +1,16 @@
 package main
 
-import "github.com/CanghaiLi/LearnPros/gin-pro/conf"
+import (
+	"github.com/CanghaiLi/LearnPros/gin-pro/conf"
+	"github.com/CanghaiLi/LearnPros/gin-pro/routes"
+)
 
 func main() {
 	conf.Init()
+	r := routes.NewRouter()
+	r.Run(":3000")
 }
 
-//
-//
-//
 //type User struct {
 //	Name string `json:"name"`
 //	Age  int    `json:"age" binding:"required,range18"`
@@ -26,7 +28,11 @@ func main() {
 //		token := ctx.Request.Header.Get("x-token")
 //		fmt.Println(token)
 //		result := NewResult(ctx)
-//		result.Success([]interface{}{"周", "杰", "轮", 4, 5})
+//		var user User
+//		user.Name = "lee"
+//		user.Age = 18
+//		user.Sex = true
+//		result.Success(&user)
 //	})
 //	v1.POST("/test", func(ctx *gin.Context) {
 //		// 注册检验函数
@@ -35,17 +41,17 @@ func main() {
 //		}
 //		var u User
 //		result := NewResult(ctx)
-//		err := ctx.ShouldBind(&u)
-//		if err != nil {
-//			fmt.Println(err.Error())
-//			result.Error(1, err.Error())
+//		response := ctx.ShouldBind(&u)
+//		if response != nil {
+//			fmt.Println(response.Error())
+//			result.Error(1, response.Error())
 //		} else {
 //			result.Success(&u)
 //		}
 //	})
 //	r.Run()
 //}
-//
+
 //func range18(fl validator.FieldLevel) bool {
 //	if fl.Field().Interface().(int) >= 18 {
 //		return true
