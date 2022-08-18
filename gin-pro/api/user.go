@@ -1,9 +1,14 @@
 package api
 
 import (
+	"github.com/CanghaiLi/LearnPros/gin-pro/serializer"
 	"github.com/CanghaiLi/LearnPros/gin-pro/services"
 	"github.com/gin-gonic/gin"
 )
+
+func Test(ctx *gin.Context) {
+	ctx.JSON(200, serializer.SuccessResponse("Test Success"))
+}
 
 func UserRegister(ctx *gin.Context) {
 	var userRegister services.UserService
@@ -15,14 +20,6 @@ func UserRegister(ctx *gin.Context) {
 	}
 }
 
-func Test(ctx *gin.Context) {
-	ctx.JSON(200, gin.H{
-		"html": "<b> Hello, world!</b>",
-	})
-}
+func UserLogin(ctx *gin.Context) {
 
-func TestPure(ctx *gin.Context) {
-	ctx.PureJSON(200, gin.H{
-		"html": "<b> Hello, world!</b>",
-	})
 }

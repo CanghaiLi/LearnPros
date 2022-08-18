@@ -41,7 +41,7 @@ func TestAddTwoNumbers(t *testing.T) {
 }
 
 func TestLengthOfLongestSubstring(t *testing.T) {
-	fmt.Println(lengthOfLongestSubstring("abcdabcef"))
+	fmt.Println(lengthOfLongestSubstring("abcdabcef..."))
 }
 
 func TestFindMedianSortedArrays(t *testing.T) {

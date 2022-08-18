@@ -1,12 +1,12 @@
 package response
 
 const (
-	SUCCESS       = 200
+	SUCCESS       = 0
 	ERROR         = 500
 	InvalidParams = 400
 
 	// 成员错误
-	ErrorExistUser      = 10002
+	ErrorExistUser      = 10002 // 用户名已存在
 	ErrorNotExistUser   = 10003
 	ErrorFailEncryption = 10006
 	ErrorNotCompare     = 10007

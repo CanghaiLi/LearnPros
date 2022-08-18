@@ -1,11 +1,14 @@
 package main
 
 import (
+	"fmt"
 	"github.com/CanghaiLi/LearnPros/gin-pro/conf"
 	"github.com/CanghaiLi/LearnPros/gin-pro/routes"
+	"os"
 )
 
 func main() {
+	fmt.Println(`os.GetEnv("JWT_SECRET")`, os.Getenv("JWT_SECRET"))
 	conf.Init()
 	r := routes.NewRouter()
 	r.Run(":3000")

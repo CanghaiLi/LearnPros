@@ -7,7 +7,7 @@ import (
 
 type User struct {
 	gorm.Model
-	Username       string `gorm:"unique"`
+	UserName       string `gorm:"unique"`
 	PasswordDigest string // 密码，密文存储
 }
 

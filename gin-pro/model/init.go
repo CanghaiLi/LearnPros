@@ -14,9 +14,9 @@ var DB *gorm.DB
 func DBConnect(dsn string) {
 	db, err := gorm.Open("mysql", dsn)
 	if err != nil {
-		log.Fatalln("数据库链接出错", err)
+		log.Fatalln("FAIL in DB connection...", err)
 	}
-	fmt.Println("数据库连接成功啦0=0")
+	fmt.Println("DB is connecting successfully...")
 	// 数据库日志输出 true详细版
 	db.LogMode(true)
 	if gin.Mode() == "release" {

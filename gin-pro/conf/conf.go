@@ -1,6 +1,7 @@
 package conf
 
 import (
+	"fmt"
 	"github.com/CanghaiLi/LearnPros/gin-pro/model"
 	"gopkg.in/ini.v1"
 	"log"
@@ -36,6 +37,7 @@ func LoadIniConfig(file *ini.File) {
 	service := file.Section("service")
 	AppMode = service.Key("AppMode").String()
 	HttpPort = service.Key("HttpPort").String()
+	fmt.Println("----- AppMode -----  ==> ", AppMode)
 
 	// mysql config
 	mysql := file.Section("mysql")

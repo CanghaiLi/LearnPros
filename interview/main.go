@@ -2,9 +2,7 @@ package main
 
 import (
 	_ "embed"
-	"encoding/json"
 	"fmt"
-	"github.com/skip2/go-qrcode"
 	"time"
 )
 
@@ -30,9 +28,12 @@ var s string
 
 func main() {
 	fmt.Println(s)
-	bytes, err := json.Marshal(Js{"lee", 18})
-	if err != nil {
-		return
-	}
-	qrcode.WriteFile(string(bytes), qrcode.Medium, 256, "./golang_qrcode.png")
+	//bytes, err := json.Marshal(Js{"lee", 18})
+	//if err != nil {
+	//	return
+	//}
+	//qrcode.WriteFile(string(bytes), qrcode.Medium, 256, "./golang_qrcode.png")
+	num := 123.1
+	f2, ok := interface{}(num).(float64)
+	fmt.Println(f2, ok)
 }

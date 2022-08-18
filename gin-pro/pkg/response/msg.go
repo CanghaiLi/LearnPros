@@ -9,7 +9,7 @@ var MsgFlags = map[int]string{
 	ErrorAuthCheckTokenTimeout: "Token已超时",
 	ErrorAuthToken:             "Token生成失败",
 	ErrorAuth:                  "Token错误",
-	ErrorNotCompare:            "不匹配",
+	ErrorNotCompare:            "密码不匹配",
 	ErrorDatabase:              "数据库操作出错,请重试",
 }
 
