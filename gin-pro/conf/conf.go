@@ -2,6 +2,7 @@ package conf
 
 import (
 	"fmt"
+	"github.com/CanghaiLi/LearnPros/gin-pro/cache"
 	"github.com/CanghaiLi/LearnPros/gin-pro/model"
 	"gopkg.in/ini.v1"
 	"log"
@@ -30,6 +31,7 @@ func Init() {
 	// 链接数据库，设置空闲连接池中(保留)的最大连接数
 	Dsn := strings.Join([]string{DbUser, ":", DbPassword, "@tcp(", DbHost, ":", DbPort, ")/", DbName, "?charset=utf8&parseTime=true"}, "")
 	model.DBConnect(Dsn)
+	cache.Redis()
 }
 
 func LoadIniConfig(file *ini.File) {

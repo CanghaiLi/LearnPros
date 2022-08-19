@@ -85,5 +85,13 @@ func (us *UserService) Login() serializer.Response {
 		}
 	}
 	// 验证成功，下发token
-	return serializer.SuccessResponse(nil)
+	token, err := utils.GenerateToken(user.ID, user.UserName, us.Password)
+	if err != nil {
+		code := response.ErrorAuthToken
+		return serializer.Response{
+			Code: code,
+			Msg:  response.GetMsg(code),
+		}
+	}
+	return serializer.SuccessResponse(token)
 }

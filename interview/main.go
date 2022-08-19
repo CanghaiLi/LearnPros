@@ -18,9 +18,14 @@ func f() {
 	println("close")
 }
 
+type Stud struct {
+	Nums string
+}
+
 type Js struct {
 	Name string `json:"name"`
 	Age  int    `json:"age"`
+	Stud
 }
 
 //go:embed file.txt
@@ -28,11 +33,23 @@ var s string
 
 func main() {
 	fmt.Println(s)
+	time.Now().Format("2016-01-02 15:04:06")
+	js := Js{
+		Name: "",
+		Age:  0,
+		Stud: Stud{
+			Nums: "1,2,3,4",
+		},
+	}
+	fmt.Println(js.Nums)
+	fmt.Println(js.Stud.Nums)
+
 	//bytes, err := json.Marshal(Js{"lee", 18})
 	//if err != nil {
 	//	return
 	//}
 	//qrcode.WriteFile(string(bytes), qrcode.Medium, 256, "./golang_qrcode.png")
+
 	num := 123.1
 	f2, ok := interface{}(num).(float64)
 	fmt.Println(f2, ok)

@@ -2,6 +2,7 @@ package routes
 
 import (
 	"github.com/CanghaiLi/LearnPros/gin-pro/api"
+	"github.com/CanghaiLi/LearnPros/gin-pro/middleware"
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-contrib/sessions/cookie"
 	"github.com/gin-gonic/gin"
@@ -17,7 +18,11 @@ func NewRouter() *gin.Engine {
 		v1.POST("/user/register", api.UserRegister)
 		v1.POST("/user/login", api.UserLogin)
 		auth := v1.Group("/")
-		auth.Use()
+		auth.Use(middleware.JWT())
+		{
+			auth.POST("/task/create", api.TaskCreate)
+			auth.POST("/task/list", api.TasksQuery)
+		}
 	}
 	return r
 }

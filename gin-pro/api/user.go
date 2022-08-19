@@ -21,5 +21,11 @@ func UserRegister(ctx *gin.Context) {
 }
 
 func UserLogin(ctx *gin.Context) {
-
+	var userRegister services.UserService
+	if err := ctx.ShouldBind(&userRegister); err == nil {
+		res := userRegister.Login()
+		ctx.JSON(200, res)
+	} else {
+		ctx.JSON(400, err)
+	}
 }
