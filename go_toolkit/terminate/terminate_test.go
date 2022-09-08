@@ -13,9 +13,6 @@ func TestTerminate(t *testing.T) {
 		fmt.Println("fnfnfnfn")
 	}
 
-	mc := new(map[int]int)
-	fmt.Println(mc)
-
 	go func() {
 		select {
 		case <-time.After(3 * time.Second):

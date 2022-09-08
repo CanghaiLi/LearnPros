@@ -33,7 +33,8 @@ var s string
 
 func main() {
 	fmt.Println(s)
-	time.Now().Format("2016-01-02 15:04:06")
+	fmt.Println(time.Now().Format("2006-01-02 15:04:05"))
+	fmt.Println("4.特定格式时间: ", time.Now().Format("15:04:05"))
 	js := Js{
 		Name: "",
 		Age:  0,
