@@ -1,8 +1,10 @@
 package main
 
 import (
+	"crypto/md5"
 	_ "embed"
 	"fmt"
+	"io"
 	"time"
 )
 
@@ -45,13 +47,21 @@ func main() {
 	fmt.Println(js.Nums)
 	fmt.Println(js.Stud.Nums)
 
-	//bytes, err := json.Marshal(Js{"lee", 18})
-	//if err != nil {
-	//	return
-	//}
-	//qrcode.WriteFile(string(bytes), qrcode.Medium, 256, "./golang_qrcode.png")
+	bytes := Md5Demo("fullstack!fullbook")
 
-	num := 123.1
-	f2, ok := interface{}(num).(float64)
-	fmt.Println(f2, ok)
+	fmt.Printf("%x\n", bytes)
+	Md5HashDemo("fullstack!", "fullbook")
+}
+
+func Md5Demo(s string) [16]byte {
+	data := []byte(s)
+	return md5.Sum(data)
+}
+
+// Md5HashDemo 返回一个新的使用MD5校验的hash.Hash接口。
+func Md5HashDemo(s, s1 string) {
+	h := md5.New()
+	io.WriteString(h, s)
+	io.WriteString(h, s1)
+	fmt.Printf("%x\n", h.Sum(nil))
 }
