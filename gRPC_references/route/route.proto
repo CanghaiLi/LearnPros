@@ -10,7 +10,7 @@ describe a route service，and the service name is RouteGuide.
 
 syntax = "proto3";
 
-option go_package = "github.com/CanghaiLi/PB_PRO/route";
+option go_package = "github.com/CanghaiLi/gRPC_references/route";
 
 package route;
 
